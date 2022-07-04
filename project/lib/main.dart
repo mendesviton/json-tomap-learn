@@ -62,14 +62,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 default:
                   {
-                    requesthttp.coin.setUSBCoin();
+                    CoinRepo = requesthttp.getCoinRepo();
+                    CoinRepo.setUSBCoin();
                     return Container(
                       child: Column(
                         children: [
-                          Text(requesthttp.coin.getname()),
-                          Text(requesthttp.coin.getbuyprice().toString()),
-                          Text(requesthttp.coin.getsellprice().toString()),
-                          Text(requesthttp.coin.getvariation().toString())
+                          Text(CoinRepo.getname()),
+                          Text(CoinRepo.getbuyprice().toString()),
+                          Text(CoinRepo.getsellprice().toString()),
+                          Text(CoinRepo.getvariation().toString())
                         ],
                       ),
                     );

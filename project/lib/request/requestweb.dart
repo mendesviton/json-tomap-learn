@@ -23,4 +23,8 @@ class FinanceHttpRepository {
 
     // print(responseMap);
   }
+
+  TCoinModel getCoinRepo() {
+    return coin;
+  }
 }
