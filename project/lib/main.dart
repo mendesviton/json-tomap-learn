@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/repository/coinmodel.dart';
 import 'package:project/request/requestweb.dart';
+import 'package:project/splashscreen.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Cotação do bitcoin'),
+      home: const SplashScreen(),
     );
   }
 }
@@ -62,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 default:
                   {
-                    CoinRepo = requesthttp.getCoinRepo();
+                    CoinRepo = requesthttp.coin;
                     CoinRepo.setUSBCoin();
                     return Container(
                       child: Column(

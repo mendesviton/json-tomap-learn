@@ -19,9 +19,9 @@ class FinanceHttpRepository {
   Future<void> findFinanceInfo() async {
     http.Response response = await http.get(Uri.parse(request));
     responseMap = json.decode(response.body);
-    coin = TCoinModel(responseMap['results']['currencies']);
 
-    // print(responseMap);
+    coin = TCoinModel(responseMap['results']['currencies']);
+    responseMap['results']['currencies'];
   }
 
   TCoinModel getCoinRepo() {

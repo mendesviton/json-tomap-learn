@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class TCoinModel {
   TCoinModel(this.CoinCollection);
 
