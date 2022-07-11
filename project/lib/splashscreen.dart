@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/main.dart';
 
+import 'presenter/home_page/home_page.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -49,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.add,
               size: 150,
               color: Colors.white,

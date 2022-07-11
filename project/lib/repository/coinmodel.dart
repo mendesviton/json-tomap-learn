@@ -6,7 +6,8 @@ class TCoinModel {
   late String _name;
   late double _buy;
   late double _sell;
-  late double _variation;
+
+  // late double _variation;
 
   String getname() {
     return _name;
@@ -20,23 +21,38 @@ class TCoinModel {
     return _buy;
   }
 
-  double getvariation() {
-    return _variation;
+  String getNameThis(String Coin) {
+    return _name = (CoinCollection['${Coin.toUpperCase()}BRL']['name']);
   }
+
+  double getSellPriceThis(String Coin) {
+    return _sell =
+        double.parse(CoinCollection['${Coin.toUpperCase()}BRL']['low']);
+  }
+  
+  double getBuyPriceThis(String Coin) {
+    return _buy =
+        double.parse(CoinCollection['${Coin.toUpperCase()}BRL']['high']);
+  }
+  // double getvariation() {
+  //   return _variation;
+  // }
 
   void setUSBCoin() {
-    _name = CoinCollection['USD']['name'];
-    _buy = CoinCollection['USD']['buy'];
-    _sell = CoinCollection['USD']['sell'];
-    _variation = CoinCollection['USD']['variation'];
+    _name = CoinCollection['USDBRL']['name'];
+    _buy = double.parse(CoinCollection['USDBRL']['high']);
+    _sell = double.parse(CoinCollection['USDBRL']['low']);
   }
 
-  void setEURCoin() {}
-  void setGPBCoin() {}
-  void setARSCoin() {}
-  void setCADCoin() {}
-  void setAUDCoin() {}
-  void setJPYCoin() {}
-  void setCNYCoin() {}
-  void setBTCCoin() {}
+  void setEURCoin() {
+    _name = CoinCollection['EURBRL']['name'];
+    _buy = double.parse(CoinCollection['EURBRL']['high']);
+    _sell = double.parse(CoinCollection['EURBRL']['low']);
+  }
+
+  void setBTCCoin() {
+    _name = CoinCollection['BTCBRL']['name'];
+    _buy = double.parse(CoinCollection['BTCBRL']['high']);
+    _sell = double.parse(CoinCollection['BTCBRL']['low']);
+  }
 }
