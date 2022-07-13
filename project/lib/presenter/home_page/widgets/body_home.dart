@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/core/assets.dart';
+import 'package:project/repository/coinmodel.dart';
 import 'package:project/request/requestweb.dart';
 
 import 'coin_container.dart';
@@ -17,35 +18,46 @@ class AppBody extends StatefulWidget {
 }
 
 class _AppBodyState extends State<AppBody> {
+  Future<dynamic>? _future = null;
+
   String mainCardCoin = '';
+  late TCoinModel? CoinRepo = null;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void setCardCoin(String coiname) {
+    setState(() {
+      // print(widget.requesthttp.coin.getNameThis('BTC'));
+      mainCardCoin = coiname;
+    });
+  }
+
+  // setFuture() async {
+  //   return await widget.requesthttp.findFinanceInfo();
+  // }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
+    Future.delayed(Duration(milliseconds: 4));
     return FutureBuilder(
         future: widget.requesthttp.findFinanceInfo(),
         builder: ((context, snapshot) {
-          snapshot.data;
+          // snapshot.data;
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-            case ConnectionState.waiting:
-              {
-                return Container(
-                  child: Text('data'),
-                );
-              }
 
             default:
               {
-                // var CoinRepo;
-                // CoinRepo = widget.requesthttp.coin;
-                // CoinRepo.setUSBCoin();
                 return SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       Container(
-                        height: size.height * 0.30,
+                        height: MediaQuery.of(context).size.height * 0.30,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 20),
                         margin: const EdgeInsets.all(10),
@@ -86,9 +98,7 @@ class _AppBodyState extends State<AppBody> {
                               padding: const EdgeInsets.only(left: 20),
                               child: Row(children: [
                                 Text(
-                                  snapshot.data != null
-                                      ? 'rerros'
-                                      : mainCardCoin,
+                                  mainCardCoin,
                                   style: const TextStyle(
                                     decoration: TextDecoration.none,
                                     color: Color.fromARGB(255, 203, 8, 113),
@@ -171,25 +181,22 @@ class _AppBodyState extends State<AppBody> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             InkWell(
-                              onTap: () {
-                                print(snapshot.data);
-                              },
                               child: CoinContainer(
-                                  setMain: () {},
+                                  setMain: setCardCoin,
                                   nameCoin: widget.requesthttp.coin
                                       .getNameThis('BTC')
                                       .substring(0, 7),
                                   imageCoin: Image.asset(bitcoin)),
                             ),
                             CoinContainer(
-                                setMain: () {},
+                                setMain: setCardCoin,
                                 nameCoin: widget.requesthttp.coin
                                     .getNameThis('EUR')
                                     .substring(0, 4),
                                 imageCoin:
                                     Image.asset('assets/image/euro.png')),
                             CoinContainer(
-                                setMain: () {},
+                                setMain: setCardCoin,
                                 nameCoin: widget.requesthttp.coin
                                     .getNameThis('usd')
                                     .substring(0, 6),
@@ -199,7 +206,7 @@ class _AppBodyState extends State<AppBody> {
                                   height: 50,
                                 )),
                             CoinContainer(
-                                setMain: () {},
+                                setMain: setCardCoin,
                                 nameCoin: widget.requesthttp.coin
                                     .getNameThis('XRP')
                                     .substring(0, 3),

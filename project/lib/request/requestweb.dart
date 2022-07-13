@@ -10,6 +10,7 @@ import 'package:project/repository/coinmodel.dart';
 const request =
     'https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,XRP-BRL';
 
+// trash API, limit access  30 requisitions on day
 // const request =
 // 'https://api.hgbrasil.com/finance?array_limit=1&fields=&key=675f9a75';
 
@@ -21,8 +22,10 @@ class FinanceHttpRepository {
 
   Future findFinanceInfo() async {
     http.Response response = await http.get(Uri.parse(request));
+
+    responseMap = json.decode(response.body);
     coin = TCoinModel(responseMap);
-    return responseMap = json.decode(response.body);
+    return responseMap;
   }
 
   TCoinModel getCoinRepo() {
